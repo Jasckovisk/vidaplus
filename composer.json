@@ -1,0 +1,20 @@
+{
+    "name": "admin/hospital-uninter",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jazz",
+            "email": "jazz.ivxx@gmail.com"
+        }
+    ],
+    "require": {
+        "latte/latte": "^3.0",
+        "phroute/phroute": "^2.2",
+        "twbs/bootstrap": "^5.3",
+        "tracy/tracy": "^2.10"
+    }
+}

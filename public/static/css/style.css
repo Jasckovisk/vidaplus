@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+.averia-sans-libre-light {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.averia-sans-libre-regular {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.averia-sans-libre-bold {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.averia-sans-libre-light-italic {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.averia-sans-libre-regular-italic {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.averia-sans-libre-bold-italic {
+  font-family: "Averia Sans Libre", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.lift {
+  display: inline-block !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform !important;
+}
+
+.lift:hover {
+  transform: translateY(-4px) !important;
+}
+
+.bg-banner {
+  background-image: url("static/images/equipe.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.selectize-control.single .selectize-input {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+}
+ .foto-perfil-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+
+  .foto-perfil-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: border 0.3s ease;
+  }
+
+  .foto-perfil-wrapper:hover img {
+    border-color: #0d6efd;
+  }
+
+  .icone-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #0d6efd;
+    display: none;
+    z-index: 1;
+    border: none;
+  }
+
+  .foto-perfil-wrapper:hover .icone-badge {
+    display: block;
+  }

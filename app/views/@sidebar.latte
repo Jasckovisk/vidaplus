@@ -1,0 +1,140 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const email = localStorage.getItem('logadoEmail');
+        let nomeUsuario = null;
+
+        if (email) {
+            const dados = localStorage.getItem('tabelaUsuarios_' + email);
+            if (dados) {
+                const usuario = JSON.parse(dados);
+                nomeUsuario = usuario.nome || null;
+            }
+        }
+
+        // Agora pode usar a variável nomeUsuario aqui ou chamar outra função
+        console.log('Nome do usuário logado:', nomeUsuario);
+
+        // Exemplo: colocar no elemento com id userLogin
+        if (nomeUsuario) {
+            document.getElementById('userLogin').textContent = nomeUsuario;
+        } else {
+            document.getElementById('userLogin').textContent = 'Usuário não autenticado';
+        }
+    });
+</script>
+
+<div class="offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 300px;">
+    <div class="offcanvas-header pt-5 mt-5 pb-0 ps-4 border">
+        <!-- Avatar redondo -->
+        <div class="d-flex align-items-center gap-3 mb-4 ">
+            <i class="fa-solid fa-circle-user fa-3x"></i>
+            <div>
+                <strong class="text-dark" id="userLogin"></strong><br>
+                <small class="text-muted">Seja bem-vindo!</small>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-body pt-0 overflow-y">
+        <ul class="list-group list-group-flush text-dark">
+            <li class="list-group-item bg-transparent border-0 fw-bold text-black">
+                Atendimento ao Paciente
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/pacientes" class="text-decoration-none text-secondary">
+                    Cadastro de Pacientes <i class="fas fa-user-plus ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/consultas" class="text-decoration-none text-secondary">
+                    Consultas e Agendamentos <i class="fas fa-calendar-check ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/prontuarios" class="text-decoration-none text-secondary">
+                    Prontuários Médicos <i class="fas fa-notes-medical ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/telemedicina" class="text-decoration-none text-secondary">
+                    Telemedicina <i class="fas fa-video ms-2"></i>
+                </a>
+            </li>
+
+            <!-- Sessão: Profissionais -->
+            <li class="list-group-item bg-transparent border-0 fw-bold text-black mt-3">
+                Profissionais de Saúde
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/profissionais" class="text-decoration-none text-secondary">
+                    Cadastro e Equipes <i class="fas fa-user-md ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/agendas" class="text-decoration-none text-secondary">
+                    Agendas e Plantões <i class="fas fa-calendar-alt ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/prescricoes" class="text-decoration-none text-secondary">
+                    Prescrições Digitais <i class="fas fa-file-prescription ms-2"></i>
+                </a>
+            </li>
+
+            <!-- Sessão: Administração -->
+            <li class="list-group-item bg-transparent border-0 fw-bold text-black mt-3">
+                Administração Hospitalar
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/leitos" class="text-decoration-none text-secondary">
+                    Gestão de Leitos <i class="fas fa-procedures ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/estoque" class="text-decoration-none text-secondary">
+                    Suprimentos e Estoque <i class="fas fa-boxes ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/financeiro" class="text-decoration-none text-secondary">
+                    Relatórios Financeiros <i class="fas fa-file-invoice-dollar ms-2"></i>
+                </a>
+            </li>
+
+            <!-- Sessão: Segurança e Configurações -->
+            <li class="list-group-item bg-transparent border-0 fw-bold text-black mt-3">
+                Segurança e Sistema
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/acessos" class="text-decoration-none text-secondary">
+                    Controle de Acessos <i class="fas fa-user-shield ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/auditoria" class="text-decoration-none text-secondary">
+                    Logs e Auditoria <i class="fas fa-clipboard-list ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/configuracoes" class="text-decoration-none text-secondary">
+                    Configurações do Sistema <i class="fas fa-cog ms-2"></i>
+                </a>
+            </li>
+
+            <!-- Sessão: Conta -->
+            <li class="list-group-item bg-transparent border-0 fw-bold text-black mt-3">
+                Conta
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="/perfil" class="text-decoration-none text-secondary">
+                    Meu Perfil <i class="fas fa-user ms-2"></i>
+                </a>
+            </li>
+            <li class="list-group-item bg-transparent border-0">
+                <a href="#" class="text-decoration-none text-danger" onclick="logout()">
+                    <i class="fas fa-sign-out-alt me-2"></i> Sair
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>

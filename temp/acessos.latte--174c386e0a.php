@@ -1,0 +1,281 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: acessos.latte */
+final class Template_174c386e0a extends Latte\Runtime\Template
+{
+	public const Source = 'acessos.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'modal' => 'blockModal', 'main' => 'blockMain'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		$this->renderBlock('scripts', get_defined_vars()) /* line 2 */;
+		echo "\n";
+		$this->renderBlock('modal', get_defined_vars()) /* line 8 */;
+		$this->renderBlock('main', get_defined_vars()) /* line 107 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = '@master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 2 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/masks.js"></script>
+<script src="static/js/pacientes.js"></script>
+<script src="static/js/colaboradores.js"></script>
+';
+	}
+
+
+	/** {block modal} on line 8 */
+	public function blockModal(array $ʟ_args): void
+	{
+		echo '<div class="modal fade" id="modalManagePermissions" tabindex="-1" aria-labelledby="modalManagePermissionsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- maior largura para lista -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalManagePermissionsLabel">Gerenciar Permissões</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body p-4">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Usuário</th>
+                            <th>E-mail</th>
+                            <th>Perfil Atual</th>
+                            <th>Alterar Perfil</th>
+                        </tr>
+                    </thead>
+                    <tbody id="permissionsTableBody">
+                        <!-- Exemplo de usuário -->
+                        <tr>
+                            <td>joaosilva</td>
+                            <td>joao@email.com</td>
+                            <td><span class="badge bg-primary">Usuário</span></td>
+                            <td>
+                                <select class="form-select form-select-sm" aria-label="Alterar perfil">
+                                    <option value="admin">Administrador</option>
+                                    <option value="usuario" selected>Usuário</option>
+                                    <option value="auditor">Auditor</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>mariaramos</td>
+                            <td>maria@email.com</td>
+                            <td><span class="badge bg-warning text-dark">Auditor</span></td>
+                            <td>
+                                <select class="form-select form-select-sm" aria-label="Alterar perfil">
+                                    <option value="admin">Administrador</option>
+                                    <option value="usuario">Usuário</option>
+                                    <option value="auditor" selected>Auditor</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <!-- Aqui você pode gerar linhas dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSavePermissions" type="button" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAddUser" tabindex="-1" aria-labelledby="modalAddUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddUserLabel">Adicionar novo usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" required>
+                    <label for="username" class="form-label">Nome de Usuário</label>
+                </div>
+                <div class="form-floating  mb-3">
+                    <input type="email" class="form-control" id="emailUser" required>
+                    <label for="emailUser" class="form-label">E-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="roleUser" required>
+                        <option value=""></option>
+                        <option value="admin">Administrador</option>
+                        <option value="usuario">Usuário</option>
+                        <option value="auditor">Auditor</option>
+                    </select>
+                    <label for="roleUser" class="form-label">Perfil</label>
+                </div>
+                <div class="form-floating  mb-3">
+                    <input type="password" class="form-control" id="senhaUser" required>
+                    <label for="senhaUser" class="form-label">Senha</label>
+                </div>
+                <div class="form-floating  mb-3">
+                    <input type="confirmPassword" class="form-control" id="`confirmarSenhaUser" required>
+                    <label for="confirmarSenhaUser" class="form-label">Confirmar senha</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Salvar </button>
+                <a class="btn btn-secondary" data-bs-dismiss="modal">Fechar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+';
+	}
+
+
+	/** {block main} on line 107 */
+	public function blockMain(array $ʟ_args): void
+	{
+		echo '<main class="container py-4 mt-5">
+    <div class="row mb-4">
+        <!-- Cards de resumo -->
+        <div class="col-12 col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Usuários Ativos</h6>
+                    <h2 class="fw-bold">120</h2>
+                    <small class="text-success">+10 novos este mês</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Acessos Hoje</h6>
+                    <h2 class="fw-bold">450</h2>
+                    <small class="text-primary">Atividades monitoradas</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Alertas de Segurança</h6>
+                    <h2 class="fw-bold">3</h2>
+                    <small class="text-danger">Eventos críticos recentes</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Último Login</h6>
+                    <h2 class="fw-bold">05/07/2025 14:35</h2>
+                    <small class="text-muted">Usuário: admin</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Tabela de acessos -->
+        <section class="col-lg-8 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Registro de Acessos Recentes</h5>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped table-bordered table-hover align-middle mb-0" id="tabelaAcessos">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Data / Hora</th>
+                                <th>IP</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>joaosilva</td>
+                                <td>06/07/2025 09:15</td>
+                                <td>192.168.0.10</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-success" disabled>Sucesso</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-danger">Bloquear</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>mariaramos</td>
+                                <td>06/07/2025 08:47</td>
+                                <td>192.168.0.34</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-danger" disabled>Falha</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-warning">Investigar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>admin</td>
+                                <td>05/07/2025 14:35</td>
+                                <td>192.168.0.1</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-success" disabled>Sucesso</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-danger">Bloquear</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Painel de controle -->
+        <section class="col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Controle de Usuários</h5>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalAddUser" >Adicionar Usuário</button>
+                    <button class="btn btn-secondary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalManagePermissions">Gerenciar Permissões</button>
+                    <button class="btn btn-danger w-100">Desbloquear Usuários</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+';
+	}
+}

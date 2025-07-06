@@ -1,0 +1,130 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: telemedicina.latte */
+final class Template_3ed48ecf4d extends Latte\Runtime\Template
+{
+	public const Source = 'telemedicina.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'main' => 'blockMain'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		$this->renderBlock('scripts', get_defined_vars()) /* line 2 */;
+		$this->renderBlock('main', get_defined_vars()) /* line 7 */;
+		echo '
+
+';
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = '@master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 2 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/masks.js"></script>
+<script src="static/js/pacientes.js"></script>
+<script src="static/js/agendamento.js"></script>
+';
+	}
+
+
+	/** {block main} on line 7 */
+	public function blockMain(array $ʟ_args): void
+	{
+		echo '<main class="container py-4 mt-5">
+    <div class="row mt-5">
+        <!-- Resumo -->
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Consultas Agendadas</h6>
+                    <h2 class="fw-bold">15</h2>
+                    <small class="text-success">+25% esta semana</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Consultas Concluídas</h6>
+                    <h2 class="fw-bold">42</h2>
+                    <small class="text-muted">Via Zoom</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Médicos Online</h6>
+                    <h2 class="fw-bold">4</h2>
+                    <small class="text-info">Em tempo real</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Zoom API Token</h6>
+                    <h2 class="fw-bold text-truncate" style="max-width: 100%">••••••••••••</h2>
+                    <small class="text-muted">Conexão segura</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de Agendamentos -->
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Consultas por Telemedicina</h5>
+            <button class="btn btn-sm btn-primary" onclick="openAgendamentoZoomModal()">Nova Consulta</button>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-bordered table-hover align-middle mb-0" id="tabelaTelemedicina">
+                <thead class="table-light">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Doutor</th>
+                        <th>Link Zoom</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td>Maria Oliveira</td>
+                        <td>08/07/2025</td>
+                        <td>14:00</td>
+                        <td>Dr. João Silva</td>
+                        <td><a href="https://zoom.us/j/123456789" target="_blank">Entrar</a></td>
+                        <td>
+                            <div  class="btn-group d-flex justify-content-center">
+                                <button class="btn btn-sm btn-warning">Editar</button>
+                                <button class="btn btn-sm btn-danger">Cancelar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+';
+	}
+}

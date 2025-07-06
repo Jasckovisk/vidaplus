@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <title>{block title}{/block}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css" rel="stylesheet" />
+
+        <!-- jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+        <!-- Selectize JS -->
+        <script   src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <header id="content">
+            {include 'navbar.latte'}
+            {include 'cookies.latte'}
+            {block content}{/block}
+        </header>
+        <main id="main" style="background: #ffffff;
+              background: linear-gradient(95deg,rgba(255, 255, 255, 1) 0%, rgba(200, 255, 0, 1) 32%, rgba(4, 184, 157, 1) 66%, rgba(0, 145, 39, 1) 100%);">
+            {block modal/}
+            {block main/}
+        </main>
+        <footer id="footer">
+            {include 'footer.latte'}
+            {block footer}{/block}
+        </footer>
+        {block scripts}{/block}
+    </body>
+</html>

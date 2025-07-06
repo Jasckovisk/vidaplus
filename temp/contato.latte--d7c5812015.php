@@ -1,0 +1,148 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: contato.latte */
+final class Template_d7c5812015 extends Latte\Runtime\Template
+{
+	public const Source = 'contato.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'content' => 'blockContent'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo "\n";
+		$this->renderBlock('scripts', get_defined_vars()) /* line 3 */;
+		echo "\n";
+		$this->renderBlock('content', get_defined_vars()) /* line 8 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = 'master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 3 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/login.js"></script>
+<script src="static/js/masks.js"></script>
+';
+	}
+
+
+	/** {block content} on line 8 */
+	public function blockContent(array $ʟ_args): void
+	{
+		echo '<section class="container-fluid p-0">
+    <div class="position-relative" style="height: 820px;">
+        <!-- Imagem de fundo -->
+        <div class="w-100 h-100" style="
+             background-image: url(\'/static/images/blur.jpg\');
+             background-size: cover;
+             background-position: center top;
+             background-repeat: no-repeat;
+             filter: brightness(0.6);
+             ">
+        </div>
+
+        <!-- Texto sobreposto no bottom -->
+        <div class="position-absolute bottom-0 start-0 w-100 p-4">
+            <div class="container bg-dark bg-opacity-50 rounded p-4 text-white">
+                <div class="container d-flex p-0">
+                    <div class="col-6">
+                        <div class="card " style="width: 40rem;">
+                            <h5 class="card-header fw-semibold">Contato</h5>
+                            <div class="card-body p-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="contatoNome">
+                                    <label class="form-label">Nome completo</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="contatoEmail">
+                                    <label class="form-label">E-mail</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control phone" id="contatoTelefone">
+                                    <label class="form-label">Telefone</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="contatoNome" rows="5" style="resize: none;"></textarea>
+                                    <label class="form-label" for="contatoNome">Mensagem</label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary col-12" onclick="contato();">Enviar</button>
+                                </div>
+                                <div class="text-center pt-2">
+                                    <input class="form-check-input" type="checkbox" id="receberEmails" value="1">
+                                    <small class="text-center">Desejo receber e-mails e ficar por dentro das promoções e campanhas do VidaPlus</small>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center col-6">
+                        <img src="/static/images/iso2.png" height="400" alt="Imagem">
+                    </div>
+                </div>
+                <p class="container pt-4 p-0 m-0">
+                    Na VidaPlus, nosso compromisso com você vai além do atendimento médico. Nossa equipe de suporte está sempre disponível para ajudá-lo com dúvidas, informações sobre serviços, agendamentos ou qualquer necessidade relacionada ao seu cuidado. Entre em contato conosco pelos nossos canais e receba atenção ágil, clara e humanizada. Estamos aqui para cuidar de você, sempre.
+                </p>
+                <div class="row mt-3 text-white">
+                    <div class="col-md-6">
+                        <h4 class="text-primary">Fale Conosco</h4>
+                        <ul class="list-unstyled ps-2">
+                            <li class="mb-2">
+                                <i class="fas fa-phone-alt me-2 text-white-50"></i> (11) 1234-5678
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-envelope me-2 text-white-50"></i> contato@vidaplus.com.br
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-map-marker-alt me-2 text-white-50"></i> Av. Exemplo, 1234 – Centro, São Paulo – SP
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <h4 class="text-primary">Redes Sociais</h4>
+                        <ul class="list-inline ps-2 d-flex flex-column">
+                            <li class="list-inline-item me-3 mb-2">
+                                <a href="#" class="text-white text-decoration-none">
+                                    <i class="fab fa-facebook fa-lg me-1"></i> Facebook
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-3 mb-2">
+                                <a href="#" class="text-white text-decoration-none">
+                                    <i class="fab fa-instagram fa-lg me-1"></i> Instagram
+                                </a>
+                            </li>
+                            <li class="list-inline-item mb-2">
+                                <a href="#" class="text-white text-decoration-none">
+                                    <i class="fab fa-whatsapp fa-lg me-1"></i> WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+';
+	}
+}

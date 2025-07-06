@@ -1,0 +1,123 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: prontuarios.latte */
+final class Template_54571cabb6 extends Latte\Runtime\Template
+{
+	public const Source = 'prontuarios.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'main' => 'blockMain'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		$this->renderBlock('scripts', get_defined_vars()) /* line 2 */;
+		$this->renderBlock('main', get_defined_vars()) /* line 6 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = '@master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 2 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/masks.js"></script>
+<script src="static/js/pacientes.js"></script>
+';
+	}
+
+
+	/** {block main} on line 6 */
+	public function blockMain(array $ʟ_args): void
+	{
+		echo '<main class="container py-4 mt-5">
+  <div class="row mt-5">
+    <!-- Cards de resumo -->
+    <div class="col-12 col-md-3 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <h6 class="text-uppercase text-muted mb-3">Prontuários Ativos</h6>
+          <h2 class="fw-bold">54</h2>
+          <small class="text-success">+5% neste mês</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <h6 class="text-uppercase text-muted mb-3">Novos Registros</h6>
+          <h2 class="fw-bold">12</h2>
+          <small class="text-primary">últimos 7 dias</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <h6 class="text-uppercase text-muted mb-3">Pendências</h6>
+          <h2 class="fw-bold">6</h2>
+          <small class="text-danger">Atualizações pendentes</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <h6 class="text-uppercase text-muted mb-3">Última Atualização</h6>
+          <h2 class="fw-bold">02/07/2025</h2>
+          <small class="text-muted">por Dr. João Silva</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfico e Tabela -->
+  <div class="row">
+    <section class="col-lg-8 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Distribuição de Diagnósticos</h5>
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-center align-items-center" style="max-height: 120%">
+             <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col-lg-4 mb-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Últimos Prontuários</h5>
+        </div>
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">#1024 - Maria Souza - Dor torácica</li>
+            <li class="list-group-item">#1023 - Rafael Lima - Avaliação cardiológica</li>
+            <li class="list-group-item">#1022 - Larissa Monteiro - Pós-operatório</li>
+            <li class="list-group-item">#1021 - Pedro Martins - Cefaleia crônica</li>
+            <li class="list-group-item">#1020 - Paula Gomes - Controle glicêmico</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+';
+	}
+}

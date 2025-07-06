@@ -1,0 +1,236 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: index.latte */
+final class Template_e9956c177b extends Latte\Runtime\Template
+{
+	public const Source = 'index.latte';
+
+	public const Blocks = [
+		['title' => 'blockTitle', 'scripts' => 'blockScripts', 'modal' => 'blockModal', 'content' => 'blockContent'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo "\n";
+		$this->renderBlock('title', get_defined_vars()) /* line 3 */;
+		echo "\n";
+		$this->renderBlock('scripts', get_defined_vars()) /* line 4 */;
+		echo '
+
+';
+		$this->renderBlock('modal', get_defined_vars()) /* line 6 */;
+		echo "\n";
+		$this->renderBlock('content', get_defined_vars()) /* line 72 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = 'master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block title} on line 3 */
+	public function blockTitle(array $ʟ_args): void
+	{
+		echo 'VidaPlus';
+	}
+
+
+	/** {block scripts} on line 4 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/agendamento.js"></script>';
+	}
+
+
+	/** {block modal} on line 6 */
+	public function blockModal(array $ʟ_args): void
+	{
+		echo '<div class="modal fade" id="consultaModal" tabindex="-1" aria-labelledby="consultaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consultaModalLabel">Agendar Consulta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body p-4">
+                    <div class="form-floating mb-3">
+                        <select id="tipoConsulta" name="tipo_consulta" required>
+                        <option value="" disabled selected></option>
+                        <option value="clinico">Clínico Geral</option>
+                        <option value="pediatra">Pediatra</option>
+                        <option value="cardiologista">Cardiologista</option>
+                        <option value="dermatologista">Dermatologista</option>
+                    </select>
+                    </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                    <label for="nome" class="text-muted">Nome completo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <label for="email" class="text-muted">E-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control phone" id="telefone" name="telefone" required>
+                    <label for="telefone" class="text-muted">Telefone</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="mensagem" name="mensagem" rows="15"></textarea>
+                    <label for="mensagem" class="form-label">Mensagem (opcional)</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="angendarConsulta();" class="btn btn-primary">Agendar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel">Agendar Consulta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="alert alert-success text-center" role="alert">
+                    <i class="fa-solid fa-circle-check text-success fa-4x mb-3"></i>
+                    <h4 class="alert-heading">Consulta agendada com sucesso!</h4>
+                    <p>Obrigado por escolher a VidaPlus. Entraremos em contato em breve para confirmar os detalhes da sua consulta.</p>
+                    <hr>
+                    <p class="mb-0">Se precisar de mais informações, entre em contato conosco pelo telefone ou e-mail.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+';
+	}
+
+
+	/** {block content} on line 72 */
+	public function blockContent(array $ʟ_args): void
+	{
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo '<div class="toast-container position-fixed bottom-0 p-3">
+    <div id="liveToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <span id="toastMsg">Erro</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+<section class="container-fluid bg-light font-sans">
+    <div class="row ps-4">
+        <aside class="col-6 d-flex flex-column justify-content-center align-items-center p-0 py-5 ">
+            <h1 class="display-3 col-10 mb-3 fw-semibold">Bem-vindo ao Vida<span class="text-danger fst-italic">Plus</span></h1>
+            <p class="lead mb-4 col-10 fs-4">
+             Oferecemos atendimento humanizado, tecnologia de ponta e uma equipe multidisciplinar pronta para cuidar de você e de quem você ama.
+            </p>
+            <div class="d-flex justify-content-center w-100">
+                <div class="ratio ratio-16x9" style="max-width: 720px; width: 90%;">
+                    <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" 
+                            title="YouTube video" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+                <div class="my-3 col-10">
+                <div class="alert alert-info d-flex align-items-center" role="alert">
+                    <i class="bi bi-gift-fill me-2 fs-3 text-primary"></i>
+                    <div>
+                        <strong>Primeira consulta gratuita!</strong> Agende agora mesmo sua avaliação inicial sem custo.
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex gap-3 justify-content-start col-10">
+                <a onclick="$(\'#consultaModal\').modal(\'show\');" class="btn btn-success btn-lg shadow">
+                    <i class="bi bi-search-heart me-2"></i>
+                    Agendar consulta
+                </a>
+                <a href="#contato" class="btn btn-outline-secondary btn-lg shadow">
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    Fale conosco
+                </a>
+            </div>
+        </aside>
+         <div class="col-6 text-center p-0 shadow">
+            <div style="background: #fff; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                <img src="static/images/doctors.jpg" alt="Doctors" class="img-fluid rounded shadow" style="object-fit: cover; width: 100%; height: 100%; mix-blend-mode: multiply; transform: scaleX(-1);"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid p-0">
+        <div class="d-flex justify-content-center text-white text-center align-items-bottom"
+             style="height: 650px; background-image: url(\'/static/images/equipe.jpg\'); background-size: cover; background-position: center -80px; background-repeat: no-repeat;">
+             <div class="bg-banner p-4 bg-dark bg-opacity-50 rounded container-fluid d-flex flex-column justify-content-end" >
+                <div class="bg-banner p-2 bg-dark bg-opacity-50 rounded container d-flex flex-column justify-content-end" >
+                <h1 class="fw-semibold display-6">Nossa Equipe</h1>
+                <p class="lead container">
+                    Na VidaPlus, contamos com uma equipe multidisciplinar formada por profissionais altamente qualificados, que atuam com excelência técnica, empatia e compromisso genuíno com a saúde e o bem-estar de cada paciente, oferecendo um atendimento humano, ético e individualizado em todas as etapas do cuidado.
+                </p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5 bg-light px-4" >
+        <h2 class="text-center mb-5 display-6 fw-semibold">Nossos Especialistas</h2>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-10 d-flex justify-content-center">
+                <div class="col-md-3 text-center mb-4 ">
+                    <i class="fas fa-user-md fa-5x text-success mb-3 lift"></i>
+                    <h4>Clínico Geral</h4>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="col-10">Profissionais experientes para cuidados de saúde primários e acompanhamento geral.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <i class="fas fa-child fa-5x text-info mb-3 lift"></i>
+                    <h4>Pediatra</h4>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="col-10">Especialistas dedicados à saúde e bem-estar das crianças e adolescentes.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <i class="fas fa-heartbeat fa-5x text-danger mb-3 lift"></i>
+                    <h4>Cardiologista</h4>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="col-10">Atendimento completo para prevenção, diagnóstico e tratamento de doenças do coração.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <i class="fas fa-allergies fa-5x text-warning mb-3 lift"></i>
+                    <h4>Dermatologista</h4>
+                     <div class="d-flex flex-column align-items-center">
+                    <p class="col-10">Cuidado especializado para a saúde da pele, cabelos e unhas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+';
+	}
+}

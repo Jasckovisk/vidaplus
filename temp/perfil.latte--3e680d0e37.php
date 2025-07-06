@@ -1,0 +1,162 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: perfil.latte */
+final class Template_3e680d0e37 extends Latte\Runtime\Template
+{
+	public const Source = 'perfil.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'modal' => 'blockModal'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		$this->renderBlock('scripts', get_defined_vars()) /* line 2 */;
+		$this->renderBlock('modal', get_defined_vars()) /* line 7 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = '@master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 2 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/masks.js"></script>
+<script src="static/js/pacientes.js"></script>
+<script src="static/js/colaboradores.js"></script>
+';
+	}
+
+
+	/** {block modal} on line 7 */
+	public function blockModal(array $ʟ_args): void
+	{
+		echo '<main class="container py-4 mt-5">
+    <div class="row mt-5">
+        <!-- Card Foto Perfil e Status -->
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3 text-center position-relative">
+                <!-- Status Online -->
+                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle" title="Online" data-bs-toggle="tooltip" data-bs-placement="left"></span>
+
+                <div class="card-body text-center">
+                    <div class="foto-perfil-wrapper" role="button">
+                        <img
+                            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80"
+                            alt="Foto de Perfil"
+                            />
+                        <div class="icone-badge">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mt-3">João Silva</h5>
+                    <small class="text-muted d-block mb-2">Administrador</small>
+                    <button class="btn btn-outline-primary btn-sm w-100" type="button">Alterar Foto</button>
+                </div>
+            </div>
+            <div class="card shadow-sm border-0 rounded-3 mt-4">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">Últimas Atividades</h6>
+                </div>
+                <ul class="list-group list-group-flush small">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Atualizou senha
+                        <span class="text-muted">1 dia atrás</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Login efetuado
+                        <span class="text-muted">2 horas atrás</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Perfil editado
+                        <span class="text-muted">5 dias atrás</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Informações do Perfil</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="perfilNome">
+                                <label for="inputNome" class="form-label">Nome Completo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="perfilEmail">
+                                <label for="perfilEmail" class="form-label">E-mail</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="inputTelefone">
+                                <label for="inputTelefone" class="form-label">Telefone</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="Cargo" value="Administrador" disabled>
+                                <label for="Cargo" class="form-label">Cargo</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <h5 class="mb-3">Alterar Senha</h5>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="Cargo">
+                                <label for="Cargo" class="form-label">Senha</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="novaSenha">
+                                <label for="novaSenha" class="form-label">Nova Senha</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="confirmarSenha">
+                                <label for="confirmarSenha" class="form-label">Confirmar Nova Senha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-bs-toggle="button"
+                        autocomplete="off"
+                        >
+                        Salvar Alterações
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+';
+	}
+}

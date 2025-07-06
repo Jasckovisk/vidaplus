@@ -1,0 +1,210 @@
+<?php
+
+use Latte\Runtime as LR;
+
+/** source: financeiro.latte */
+final class Template_d4d91ec749 extends Latte\Runtime\Template
+{
+	public const Source = 'financeiro.latte';
+
+	public const Blocks = [
+		['scripts' => 'blockScripts', 'main' => 'blockMain'],
+	];
+
+
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		$this->renderBlock('scripts', get_defined_vars()) /* line 2 */;
+		$this->renderBlock('main', get_defined_vars()) /* line 7 */;
+	}
+
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		$this->parentName = '@master.latte';
+		return get_defined_vars();
+	}
+
+
+	/** {block scripts} on line 2 */
+	public function blockScripts(array $ʟ_args): void
+	{
+		echo '<script src="static/js/masks.js"></script>
+<script src="static/js/pacientes.js"></script>
+<script src="static/js/colaboradores.js"></script>
+';
+	}
+
+
+	/** {block main} on line 7 */
+	public function blockMain(array $ʟ_args): void
+	{
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo '<main class="container py-4 mt-5">
+    <div class="row mt-5">
+        <!-- Cards de Resumo -->
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-2">Receita Total (Mês)</h6>
+                    <h2 class="fw-bold text-success">R$ 152.000</h2>
+                    <small class="text-success">+12% em relação ao mês anterior</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-2">Despesas Operacionais</h6>
+                    <h2 class="fw-bold text-danger">R$ 87.400</h2>
+                    <small class="text-danger">+5% neste mês</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-2">Lucro Líquido</h6>
+                    <h2 class="fw-bold">R$ 64.600</h2>
+                    <small class="text-primary">Margem de 42%</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-2">Última Atualização</h6>
+                    <h2 class="fw-bold">06/07/2025</h2>
+                    <small class="text-muted">por Financeiro</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfico e Tabela -->
+    <div class="row">
+        <!-- Gráfico de Barras -->
+        <section class="col-lg-8 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Evolução Financeira</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="myChartFinanceiro"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Receita por Categoria -->
+        <section class="col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Receita por Categoria</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            Consultas <span class="fw-bold">R$ 65.000</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Procedimentos <span class="fw-bold">R$ 48.000</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Internações <span class="fw-bold">R$ 29.000</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Outros <span class="fw-bold">R$ 10.000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tabela de Transações -->
+    <div class="row">
+        <section class="col-12 mb-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Fluxo de Caixa</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered table-hover align-middle mb-0" id="tabelaFinanceiro">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05/07/2025</td>
+                                <td><span class="text-success">Entrada</span></td>
+                                <td>Consultas</td>
+                                <td>Consulta clínica - Maria Oliveira</td>
+                                <td class="fw-bold text-success">R$ 250</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-success" disabled>Confirmado</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>04/07/2025</td>
+                                <td><span class="text-danger">Saída</span></td>
+                                <td>Folha de Pagamento</td>
+                                <td>Salário - Dr. João Silva</td>
+                                <td class="fw-bold text-danger">R$ 8.000</td>
+                                <td>
+                                     <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-success" disabled>Pago</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>03/07/2025</td>
+                                <td><span class="text-success">Entrada</span></td>
+                                <td>Internações</td>
+                                <td>Paciente Rafael Souza - 3 dias</td>
+                                <td class="fw-bold text-success">R$ 3.200</td>
+                                  <td>
+                                     <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-warning" disabled>Pendente</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>02/07/2025</td>
+                                <td><span class="text-danger">Saída</span></td>
+                                <td>Suprimentos</td>
+                                <td>Compra de EPIs</td>
+                                <td class="fw-bold text-danger">R$ 1.450</td>
+                                  <td>
+                                     <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-danger" disabled>Cancelado</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+';
+	}
+}
