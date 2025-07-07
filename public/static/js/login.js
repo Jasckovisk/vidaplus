@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // evita submit se for dentro de um form
+            document.getElementById("login").click(); // aciona o botão
+        }
+    });
     $('#registroNome, #registroCpf, #registroEmail, #registroTelefone, #registroSenha, #confirmarSenha').on('input', function () {
         $(this).removeClass('border-danger');
     });
@@ -7,7 +13,6 @@ $(document).ready(function () {
 
     const keyAdmin = 'tabelaUsuarios_' + adminEmail;
 
-    // Cria apenas se ainda não existir
     if (!localStorage.getItem(keyAdmin)) {
         const admin = {
             nome: 'Administrador',
@@ -64,18 +69,30 @@ function cadastro() {
         check = false;
     }
 
-    // Verifica se todos os campos foram preenchidos
-    if (check === true && $('input[name="termosCondicoes"]:checked')) {
-        // Verifica se as senhas são iguais
-        if ($('#registroSenha').val() !== $('#confirmarSenha').val()) {
-            $('#registroSenha, #confirmarSenha').addClass('border-danger');
-            $('#notificacao').removeClass('d-none');
-        } else {
-            $('#responseModal').modal('show');
+    if (check === true && $('input[name="termosCondicoes"]:checked').length > 0) {
+        const senha = $('#registroSenha').val();
+        const confirmarSenha = $('#confirmarSenha').val();
+        const email = $('#registroEmail').val().trim();
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Armazena o usuário no localStorage
-            localStorage.setItem('tabelaUsuarios_' + registro['userLogin'], JSON.stringify(registro));
+        // Valida senhas
+        if (senha !== confirmarSenha) {
+            $('#registroSenha, #confirmarSenha').addClass('border-danger');
+            $('#notificacao').removeClass('d-none').text('As senhas não coincidem.');
+            return;
         }
+
+        // Valida e-mail
+        if (!regexEmail.test(email)) {
+            $('#registroEmail').addClass('border-danger');
+            $('#notificacao').removeClass('d-none').text('Digite um e-mail válido.');
+            return;
+        }
+
+        // Tudo certo: salva
+        registro['userLogin'] = email;
+        $('#responseModal').modal('show');
+        localStorage.setItem('tabelaUsuarios_' + registro['userLogin'], JSON.stringify(registro));
     }
 }
 

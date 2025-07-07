@@ -6,7 +6,7 @@ $(document).ready(function () {
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
         },
-        pageLength: 5,
+        pageLength: 10,
         lengthMenu: [5, 10, 25, 50, 100],
         responsive: true
     });
@@ -18,6 +18,7 @@ $(document).ready(function () {
         lengthMenu: [5, 10, 25, 50, 100],
         responsive: true
     });
+    iniciaTabela();
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChartFinanceiro');
     new Chart(ctx, {
@@ -98,7 +99,7 @@ $(document).ready(function () {
             }
         }
     });
-    iniciaTabela();
+    
 });
 var key;
 var dadosPacientes = [];
@@ -202,17 +203,16 @@ function insertPaciente() {
     localStorage.setItem('pacienteFake_' + lastId, JSON.stringify(saida));
     $('#insertPacienteModal').modal('hide');
     $('#responseModal').modal('show');
-    // Atualiza a tabela, se função existir
-    if (typeof iniciaTabela === 'function') {
+    if (typeof iniciaTabela == 'function') {
         iniciaTabela();
     }
 }
 
 
-
 function iniciaTabela() {
     let myData = [];
     let dadosPacientes = {};
+    console.log('myData');
     Object.keys(localStorage).forEach(key => {
         if (key.startsWith('pacienteFake_')) {
             const paciente = JSON.parse(localStorage.getItem(key));
@@ -228,13 +228,14 @@ function iniciaTabela() {
                     paciente.nome,
                     calculaIdadeSimples(paciente.dataNascimento),
                     paciente.genero,
-                    paciente.cpf || '-',
                     paciente.telefone,
+                    paciente.cpf || '-',
                     paciente.email || '-',
                     acoes
                 ];
                 dadosPacientes[paciente.id] = paciente;
                 myData.push(linha);
+//                console.log('myData');
             }
         }
     });
@@ -245,15 +246,31 @@ function iniciaTabela() {
 }
 
 function calculaIdadeSimples(dataNascimentoStr) {
-    if (!dataNascimentoStr)
-        return null;
-    // Supondo formato DD/MM/AAAA
-    const ano = parseInt(dataNascimentoStr.split('/')[2], 10);
-    if (isNaN(ano))
-        return null;
-    const anoAtual = new Date().getFullYear();
-    return anoAtual - (ano + 2000);
+    if (!dataNascimentoStr) return null;
+
+    const partes = dataNascimentoStr.split('-');
+    if (partes.length !== 3) return null;
+
+    const ano = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10);
+    const dia = parseInt(partes[2], 10);
+
+    if (isNaN(ano) || isNaN(mes) || isNaN(dia)) return null;
+
+    const hoje = new Date();
+    const nascimento = new Date(ano, mes - 1, dia); // mês começa do zero no JS
+
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+
+    // Ajusta se o aniversário ainda não chegou este ano
+    const aniversarioEsteAno = new Date(hoje.getFullYear(), mes - 1, dia);
+    if (hoje < aniversarioEsteAno) {
+        idade--;
+    }
+
+    return idade;
 }
+
 
 function excluirPaciente(id) {
     const chave = 'pacienteFake_' + id;

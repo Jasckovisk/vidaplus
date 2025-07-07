@@ -64,64 +64,16 @@ $(document).ready(function () {
 
         $(this).val(input);
     });
-    // Bloqueia a digitação de letras e símbolos
-    $(".data-nascimento").on("keypress", function (e) {
-        const charCode = e.which ? e.which : e.keyCode;
+    $(".email").on("input", function () {
+        const email = $(this).val().trim();
 
-        // Permite apenas números (0 a 9)
-        if (charCode < 48 || charCode > 57) {
-            e.preventDefault();
+        // Regex simples para e-mail válido
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (regexEmail.test(email)) {
+            $(this).removeClass("is-invalid").addClass("is-valid");
+        } else {
+            $(this).removeClass("is-valid").addClass("is-invalid");
         }
-    });
-
-// Aplica a máscara conforme o usuário digita
-    $(".data-nascimento").on("input", function () {
-        let input = $(this).val().replace(/\D/g, ""); // só números
-
-        // Limita a 8 dígitos (DDMMYYYY)
-        input = input.substring(0, 8);
-
-        // Pega dia, mês e ano separados
-        let dia = input.substring(0, 2);
-        let mes = input.substring(2, 4);
-        let ano = input.substring(4, 8);
-
-        // Limita dia e mês
-        if (dia.length === 2) {
-            let d = parseInt(dia);
-            if (d < 1)
-                d = 1;
-            if (d > 31)
-                d = 31;
-            dia = d.toString().padStart(2, '0');
-        }
-        if (mes.length === 2) {
-            let m = parseInt(mes);
-            if (m < 1)
-                m = 1;
-            if (m > 12)
-                m = 12;
-            mes = m.toString().padStart(2, '0');
-        }
-
-        // Limita ano para não passar do ano atual
-        if (ano.length === 4) {
-            const anoAtual = new Date().getFullYear();
-            let a = parseInt(ano);
-            if (a > anoAtual)
-                a = anoAtual;
-            if (a < 1900)
-                a = 1900; // limite inferior, pode ajustar
-            ano = a.toString();
-        }
-
-        // Monta a data formatada
-        let formatted = dia;
-        if (mes)
-            formatted += '/' + mes;
-        if (ano)
-            formatted += '/' + ano;
-
-        $(this).val(formatted);
     });
 });

@@ -96,7 +96,7 @@ final class Template_5b93863cce extends Latte\Runtime\Template
                                 <label for="registroCpf" class="form-label text-muted">CPF</label>
                             </div>
                             <div class="mb-3 form-floating">
-                                <input type="email" class="form-control" id="registroEmail" placeholder="Digite seu e-mail" required>
+                                <input type="text" class="form-control email" id="registroEmail" placeholder="Digite seu e-mail" required>
                                 <label for="email" class="form-label text-muted">E-mail</label>
                             </div>
                             <div class="mb-3 form-floating">
